@@ -1,0 +1,35 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# macOS system files
+.DS_Store
+
+# Docker-related files (optional if you don't want to track volumes or temporary builds)
+docker-compose.override.yml
+*.pid
+
+# VSCode settings
+.vscode/
+
+# Optional: SQLite or DB dumps (if used)
+*.sqlite
+*.sqlite3
+*.db
+*.sql
+
+# Optional: OS swap or temp files
+*.swp
+*.swo
+*.tmp
+
+# Build artifacts
+dist/
+build/
