@@ -1,14 +1,21 @@
-# version "3.8"
+# version: '3.8'
+
 services:
   app:
     build: .
     container_name: edulang-backend
     ports:
       - "3000:3000"
-    env_file:
-      - .env
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=edulang123
+      - DB_NAME=edulang_db
+      - ADMIN_EMAIL=admin@edulang.com
+      - ADMIN_PASSWORD=admin123
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     volumes:
       - .:/app
       - /app/node_modules
@@ -18,11 +25,17 @@ services:
     container_name: edulang_mysql
     ports:
       - "3306:3306"
-    env_file:
-      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=edulang123
+      - MYSQL_DATABASE=edulang_db
     volumes:
       - mysql-data:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
 
 volumes:
-  mysql-data: 
+  mysql-data:
