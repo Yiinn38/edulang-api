@@ -1,5 +1,4 @@
 const { User } = require("../models");
-const bcrypt = require("bcryptjs");
 
 const authController = {
   login: async (req, res) => {
@@ -7,12 +6,7 @@ const authController = {
       const { email, password } = req.body;
 
       const user = await User.findOne({ where: { email } });
-      if (!user) {
-        return res.status(401).json({ message: "Invalid credentials" });
-      }
-
-      const isValidPassword = await user.validPassword(password);
-      if (!isValidPassword) {
+      if (!user || user.password !== password) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
 
