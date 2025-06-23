@@ -63,5 +63,7 @@ docker-compose up --build
 
 ### 🔑 Credenciqales iniciales 🔑
 * Admin `admin@edulang.com` / `admin123`
-* Teacher `teacher1@edulang.com` / `teacher123`
-* Student `student1@edulang.com` / `student123`
+* Teacher1 `teacher1@edulang.com` / `teacher123`
+* Teacher2 `teacher2@edulang.com` / `teacher2123`
+* Student1 `student1@edulang.com` / `student1123`
+* Student2 `student2@edulang.com` / `student2123`
