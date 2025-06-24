@@ -8,6 +8,7 @@ router.post("/students", adminController.createStudent);
 
 // Teachers
 router.get("/teachers", adminController.getAllTeachers);
+// router.post("/teachers", adminController.createTeacher);
 
 // Courses
 router.get("/courses", adminController.getAllCourses);

@@ -13,8 +13,19 @@ const adminController = {
 
   createStudent: async (req, res) => {
     try {
-      const studentData = req.body;
-      const newStudent = await Student.create(studentData);
+      const { user, student } = req.body;
+
+      const newUser = await User.create({
+        email: user.email,
+        password: user.password,
+        role: "student",
+      });
+
+      const newStudent = await Student.create({
+        userId: newUser.id,
+        ...student,
+      });
+
       res.status(201).json(newStudent);
     } catch (error) {
       res.status(500).json({ message: "Error creating student", error: error.message });
@@ -28,6 +39,27 @@ const adminController = {
       res.json(teachers);
     } catch (error) {
       res.status(500).json({ message: "Error fetching teachers", error: error.message });
+    }
+  },
+
+  createTeacher: async (req, res) => {
+    try {
+      const { user, teacher } = req.body;
+
+      const newUser = await User.create({
+        email: user.email,
+        password: user.password,
+        role: "teacher",
+      });
+
+      const newTeacher = await Teacher.create({
+        userId: newUser.id,
+        ...teacher,
+      });
+
+      res.status(201).json(newTeacher);
+    } catch (error) {
+      res.status(500).json({ message: "Error creating teacher", error: error.message });
     }
   },
 
